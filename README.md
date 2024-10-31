@@ -57,6 +57,9 @@ Install the required Node packages:
 In a separate terminal, start the frontend server:
  npm start
 
+# Other Requirements
+MongoDB Requirements
+To run this project, you need to have MongoDB installed and set up.
 
 Here are some project outputs - 
 
