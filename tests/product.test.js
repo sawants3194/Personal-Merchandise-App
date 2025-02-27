@@ -55,7 +55,7 @@ describe("Product Routes", () => {
       .field("category", productData.category)
       .attach("photo", testImagePath); // Add image
 
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(201);
     expect(res.body).toHaveProperty("message", "Product created successfully!");
     expect(res.body.product).toMatchObject({
       name: productData.name,
