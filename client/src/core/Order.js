@@ -14,55 +14,50 @@ const Order = () => {
 
   // Fetch orders and their reviews
   useEffect(() => {
-    const fetchOrdersAndReviews = async () => {
-      try {
-        // step 1
-        const orderData = await getAllOrders(user._id, token);
+  const fetchOrdersAndReviews = async () => {
+    if (!user || !user._id) {
+      setLoading(false);
+      setError("User is not authenticated");
+      return;
+    }
 
-        // step 5
-        if (orderData["purchases"].length > 0) {
+    try {
+      const orderData = await getAllOrders(user._id, token);
 
+      if (orderData["purchases"].length > 0) {
+        const productIds = orderData.purchases.map((order) => order._id);
+        const reviewData = await getReviewsByProducts(productIds, token);
+        console.log("Review Data:", reviewData);
 
-          // Extract product IDs from orders
-          const productIds = orderData.purchases.map((order) => order._id);
+        const userReviews = reviewData.reviews.filter(
+          (review) => review?.user_id?._id === user._id
+        );
 
-          // step 6
-          // Fetch reviews for all product IDs
-          const reviewData = await getReviewsByProducts(productIds, token);
-          console.log("re", reviewData)
+        const reviewMap = userReviews.reduce((acc, review) => {
+          if (!acc[review.product_id]) {
+            acc[review.product_id] = [];
+          }
+          acc[review.product_id].push(review);
+          return acc;
+        }, {});
 
-          // step 10
-          // Filter reviews based on the logged-in user's ID
-          const userReviews = reviewData.reviews.filter(
-            (review) => review.user_id._id === user._id
-          );
-          // Transform reviews into a dictionary keyed by product ID
-          const reviewMap = userReviews.reduce((acc, review) => {
-            if (!acc[review.product_id]) {
-              acc[review.product_id] = [];
-            }
-            acc[review.product_id].push(review);
-            return acc;
-          }, {});
- 
-          setOrders(orderData.purchases);
-
-          // step 11
-          setReviews(reviewMap);
-        }
-        else {
-          setOrders(orderData.purchases);
-
-        }
-      } catch (err) {
-        setError(err.message || "Failed to fetch orders or reviews");
-      } finally {
-        setLoading(false);
+        setOrders(orderData.purchases);
+        setReviews(reviewMap);
+      } else {
+        setOrders(orderData.purchases);
       }
-    };
+    } catch (err) {
+      setError(err.message || "Failed to fetch orders or reviews");
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  if (user && user._id && token) {
     fetchOrdersAndReviews();
-  }, [user._id, token]);
+  }
+}, [user?._id, token]);
+
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
