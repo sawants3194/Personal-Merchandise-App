@@ -79,7 +79,7 @@ const Order = () => {
                   <div className="card-body">
                     <h4>{order.name}</h4>
                     <p>Quantity: {order.quantity}</p>
-                    <p>Amount: ₹{order.amount}</p>
+                    <p>Amount: ₹{order.amount * order.quantity}</p>
                     <p>
                       Purchased On:{" "}
                       {new Date(order.createdAt).toLocaleDateString("en-GB")}

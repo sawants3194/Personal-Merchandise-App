@@ -81,6 +81,7 @@ exports.createProduct = async (req, res) => {
 };
 exports.getAllProducts = (req, res) => {
   Product.find()
+    .select("-photo.data")
     .exec((err, products) => {
       if (err) {
         return res.status(400).json({
