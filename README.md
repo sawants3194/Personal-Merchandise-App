@@ -159,6 +159,10 @@ Ensure you have the following installed:
 
 ## Testing
 Make sure server is stopped.
+**Set the environment**:
+ ```bash
+   NODE_ENV=test
+ ```
 **Run Test Cases**:
  ```bash
    npx jest --detectOpenHandles --runInBand
