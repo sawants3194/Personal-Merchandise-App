@@ -118,7 +118,7 @@ const Signin = () => {
   };
 
   return (
-    <Base title="Sign In page" description="A page for user to sign in!">
+    <Base title="Sign In | Personal Merchandise App" description="Access your Personal Merchandise App account to manage orders, update profile, and continue shopping your favorite T-shirts.">
       {loadingMessage()}
       {errorMessage()}
       {signInForm()}

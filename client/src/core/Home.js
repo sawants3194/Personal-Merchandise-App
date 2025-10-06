@@ -24,7 +24,9 @@ const Home = () => {
   }, []);
 
   return (
-    <Base title="Home Page" description="Welcome to our T-shirt Store">
+    <Base title="Personal Merchandise App | Buy Trendy T-Shirts Online" 
+    description="Shop the latest T-shirts online with Personal Merchandise App. Secure payments, fast delivery, and a user-friendly shopping experience for men and women."
+    >
       <div className="container">
         <h1 className="mb-4 text-center">All Products</h1>
         {error && (

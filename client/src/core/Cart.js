@@ -70,7 +70,7 @@ const Cart = () => {
   };
 
   return (
-    <Base title="Carts Page" description="Welcome to your cart!">
+    <Base title="Your Cart | Personal Merchandise App" description="View products added to your cart, update quantities, and proceed to checkout securely on Personal Merchandise App.">
       <div>
         <div className="row text-center">
           <h1>All Products</h1>

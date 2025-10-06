@@ -98,7 +98,7 @@ const Signup = () => {
   };
 
   return (
-    <Base title="SignUp Page">
+    <Base title="Sign Up | Personal Merchandise App" description="Create your account on Personal Merchandise App to shop trendy T-shirts, manage orders, and save favorite products securely.">
       {SignUpForm()}
       {successMessage()}
       {errorMessage()}

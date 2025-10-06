@@ -63,7 +63,7 @@ const Order = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <Base title="Your Purchases" description="Review your purchase history">
+    <Base title="Your Orders | Personal Merchandise App" description="Track your purchase history, view order details, and check order status on Personal Merchandise App.">
       <div className="container">
         <h2 className="mb-4 text-center">Your Orders with Reviews</h2>
         {orders.length === 0 ? (
