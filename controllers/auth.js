@@ -78,11 +78,12 @@ exports.signin = (req, res) => {
       message: "User signed in successfully",
       ok:true
     });
-  });
+  });  
 };
 
 //protected route
 exports.isSignIn = expressJwt({
+  algorithms: ["HS256"],
   secret: config.app.secret,
   userProperty: "auth",
 });

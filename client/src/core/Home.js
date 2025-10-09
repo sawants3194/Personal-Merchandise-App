@@ -11,7 +11,7 @@ const Home = () => {
     getProducts()
       .then((data) => {
         setProducts(data);
-        console.log(data)
+        console.log("data", data)
         setError(false); // Reset error state if data is fetched successfully
       })
       .catch(() => {

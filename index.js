@@ -33,7 +33,7 @@ mongoose
     useCreateIndex: true,
     useFindAndModify: false,
   })
-  .then(() => console.log(`✅ Connected to database (${process.env.NODE_ENV} environment)`))
+  .then(() => console.log(`✅ Connected to database (${process.env.NODE_ENV} environment) and port:${port} with database URL ${db_uri}`))
   .catch((error) => {
     console.error("❌ Database connection error:", error);
     process.exit(1);
@@ -76,11 +76,9 @@ process.on("SIGINT", async () => {
 // Start the server
 const port = config.app.port;
 
-if (process.env.NODE_ENV !== 'test') {
-  app.listen(port, () => {
-    console.log(`🚀 Server is running on port ${port} with branch product-test-routes`);
-  });
-} 
+app.listen(port, () => {
+  console.log(`🚀 Server is running on port ${port} in ${process.env.NODE_ENV || 'development'} environment`);
+});
 
 
 module.exports = app;
