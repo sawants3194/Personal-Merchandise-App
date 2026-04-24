@@ -1,7 +1,6 @@
 // Load environment variables
 require("dotenv").config();
 
-console.log("ENV", process.env.NODE_ENV);
 // Import dependencies
 const express = require("express");
 const mongoose = require("mongoose");
@@ -68,7 +67,6 @@ app.use((err, req, res, next) => {
 
 // Graceful shutdown
 process.on("SIGINT", async () => {
-  console.log("Shutting down gracefully...");
   await mongoose.connection.close();
   process.exit(0);
 });

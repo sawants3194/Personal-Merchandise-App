@@ -165,7 +165,7 @@ Make sure server is stopped.
  ```
 **Run Test Cases**:
  ```bash
-   npx jest --detectOpenHandles --runInBand
+   set NODE_ENV=test && npx jest --runInBand --detectOpenHandles
  ```
    
 ## Contributing

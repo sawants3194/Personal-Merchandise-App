@@ -53,7 +53,7 @@ describe("Product Routes", () => {
       price: 100,
       category: "TestCategory",
     };
-console.log("File exists:", testImagePath);
+    console.log("File exists:", testImagePath);
     const res = await request(app)
       .post("/api/product/create")
       .set("Authorization", `Bearer ${userToken}`)
@@ -91,6 +91,7 @@ console.log("File exists:", testImagePath);
       stock: 10,
     });
 
+    console.log("product._id",product._id,"adminId",adminId)
     const res = await request(app)
       .delete(`/api/product/delete/${product._id}/${adminId}`)
       .set("Authorization", `Bearer ${userToken}`); // Replace with a valid admin token

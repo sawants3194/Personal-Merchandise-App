@@ -83,6 +83,7 @@ exports.signin = (req, res) => {
 
 //protected route
 exports.isSignIn = expressJwt({
+  
   algorithms: ["HS256"],
   secret: config.app.secret,
   userProperty: "auth",
