@@ -7,7 +7,7 @@ const config = {
         secret: process.env.SECRET || 'defaultsecret'
     },
     database:{
-        uri_test: process.env.uri_test,
+        uri_test: process.env.MONGO_URI_TEST,
         uri_dev: process.env.MONGO_URI
     },   
     email:{

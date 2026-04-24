@@ -1,6 +1,7 @@
 // Load environment variables
 require("dotenv").config();
 
+console.log("ENV", process.env.NODE_ENV);
 // Import dependencies
 const express = require("express");
 const mongoose = require("mongoose");
@@ -20,25 +21,24 @@ const reviewRoute = require("./routes/review");
 
 // Initialize Express app
 const app = express();
-let db_uri;
+
+// Start the server
+const port = config.app.port;
 
 // Load environment variables based on the environment
-db_uri = process.env.NODE_ENV === 'test' ? config.database.uri_test : config.database.uri_dev;
+const db_uri = process.env.NODE_ENV === 'test' ? config.database.uri_test : config.database.uri_dev;
 
 // Connect to MongoDB
-mongoose
-  .connect(db_uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  })
-  .then(() => console.log(`✅ Connected to database (${process.env.NODE_ENV} environment) and port:${port} with database URL ${db_uri}`))
-  .catch((error) => {
-    console.error("❌ Database connection error:", error);
+// Connect DB (separate function)
+const connectDB = async () => {
+  try {
+    await mongoose.connect(db_uri);
+    console.log(`Connected to DB (${process.env.NODE_ENV})`);
+  } catch (error) {
+    console.error("DB connection error:", error);
     process.exit(1);
-  });
-
+  }
+};
 // Middleware
 app.use(cookieParser());
 
@@ -73,12 +73,15 @@ process.on("SIGINT", async () => {
   process.exit(0);
 });
 
-// Start the server
-const port = config.app.port;
+let server;
 
-app.listen(port, () => {
-  console.log(`🚀 Server is running on port ${port} in ${process.env.NODE_ENV || 'development'} environment`);
-});
+// Start the server if NODE_ENV=development
+if (process.env.NODE_ENV !== "test") {
+    server = app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+
+}
 
 
-module.exports = app;
+module.exports = { app, connectDB };
