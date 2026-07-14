@@ -75,9 +75,11 @@ let server;
 
 // Start the server if NODE_ENV=development
 if (process.env.NODE_ENV !== "test") {
-    server = app.listen(port, () => {
+    connectDB().then(()=>{
+      server = app.listen(port, () => {
     console.log(`Server running on port ${port}`);
   });
+    })
 
 }
 
