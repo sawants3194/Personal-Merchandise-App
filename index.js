@@ -27,11 +27,16 @@ const port = config.app.port;
 // Load environment variables based on the environment
 const db_uri = process.env.NODE_ENV === 'test' ? config.database.uri_test : config.database.uri_dev;
 
+mongoose.set("useFindAndModify", false);
+
 // Connect to MongoDB
 // Connect DB (separate function)
 const connectDB = async () => {
   try {
-    await mongoose.connect(db_uri);
+    await mongoose.connect(db_uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
     console.log(`Connected to DB (${process.env.NODE_ENV})`);
   } catch (error) {
     console.error("DB connection error:", error);

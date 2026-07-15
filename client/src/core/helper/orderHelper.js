@@ -13,13 +13,13 @@ export const createOrder = async (userId, token, orderData) => {
     });
 
     const data = await response.json().catch(()=> null);
-
+    console.log(response.ok);
     if (!response.ok) {
       throw new Error(data?.message || `HTTP Error: ${response.status}`);
     }
     return data;
   } catch (err) {
-    console.error("Error creating order:", err);
+    console.error("Error creating the order:", err);
     throw err; // Re-throw the error for the caller to handle
   }
 };
