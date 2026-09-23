@@ -6,10 +6,12 @@
 2. [Features](#features)
 3. [Technologies Used](#technologies-used)
 4. [Installation](#installation)
-5. [API Endpoints](#api-endpoints)
-6. [Testing](#testing)
-7. [Contributing](#contributing)
-8. [Security](#security)
+5. [Data Flow](#data-flow)
+6. [Project Architecture](#project-architecture)
+7. [API Endpoints](#api-endpoints)
+8. [Testing](#testing)
+9. [Contributing](#contributing)
+10. [Security](#security)
 
 # Introduction
 An e-commerce platform built using the MERN stack (MongoDB, Express, React, Node.js). This app allows users to browse products, add them to their cart, and make purchases. It also includes user authentication, product management, and order tracking features for admins.
@@ -94,6 +96,69 @@ Ensure you have the following installed:
 - Backend API: `http://localhost:8000/api`
 
 
+## Data Flow
+
+```text
+                 REACT FRONTEND
+                       │
+                       ▼
+                 React Components
+                       │
+                       ▼
+                  API Helpers
+                       │
+                       ▼
+                     Axios
+                       │
+                       ▼
+                 Express Backend
+                       │
+                       ▼
+                 Express Routes
+                       │
+                       ▼
+                   Controllers
+                       │
+                       ▼
+                     Models
+                       │
+                       ▼
+                    MongoDB
+                       │
+                       ▼
+                   Controller
+                       │
+                       ▼
+                  JSON Response
+                       │
+                       ▼
+                     Axios
+                       │
+                       ▼
+                React UI Update
+```
+
+## Project Architecture
+
+```text
+                         PERSONAL MERCHANDISE APP
+                                  |
+                    +-------------+-------------+
+                    |                           |
+                 CLIENT                       SERVER
+                 React                    Node + Express
+                    |                           |
+             +------+-------+           +-------+-------+
+             |      |       |           |       |       |
+            User   Core   Admin      Routes Controllers Models
+             |      |       |           |       |       |
+             +------+--------+          +-------+-------+
+                    |                           |
+                    |          Axios            |
+                    +------------ API -----------+
+                                |
+                             MongoDB
+```
 ## API Endpoints
 
 ### User Management
