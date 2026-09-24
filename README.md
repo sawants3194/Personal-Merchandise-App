@@ -88,6 +88,7 @@ Ensure you have the following installed:
      
     - **Client-side (.env)**: Add the following configuration:
         - `REACT_APP_BACKEND=http://localhost:8000/api` (URL of the backend server)
+        - `SKIP_PREFLIGHT_CHECK=true`: skips the React dependency check during startup
      
 
 ### Accessing the Application
