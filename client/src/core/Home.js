@@ -38,7 +38,7 @@ const Home = () => {
       <div className="row">
         {!error &&
           products.map((product, index) => (
-            <div key={index}>
+            <div className="col-md-4 mb-4" key={index}>
               <Card product={product} />
             </div>
           ))}
