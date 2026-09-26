@@ -11,7 +11,9 @@
 7. [API Endpoints](#api-endpoints)
 8. [Testing](#testing)
 9. [Contributing](#contributing)
-10. [Security](#security)
+10. [License](#license)
+11. [Troubleshooting](#troubleshooting)
+12. [Security](#security)
 
 # Introduction
 An e-commerce platform built using the MERN stack (MongoDB, Express, React, Node.js). This app allows users to browse products, add them to their cart, and make purchases. It also includes user authentication, product management, and order tracking features for admins.
@@ -233,7 +235,8 @@ Make sure server is stopped.
  ```bash
    set NODE_ENV=test && npx jest --runInBand --detectOpenHandles
  ```
-   
+
+
 ## Contributing
 
 Contributions are welcome! Please follow these steps:
@@ -253,6 +256,16 @@ Contributions are welcome! Please follow these steps:
    ```
 5. **Open a pull request**
 
+
+## 🛠 Troubleshooting
+
+### ❗ Jest Tests Fail with `npm run test` but Work Individually
+If you encounter an issue where running `npm run test` fails with the error:
+
+but running individual test files (e.g., `npm test product.test.js`) works fine, you may be experiencing a **cross-env** or **Jest configuration** issue.
+
+📌 **Check this GitHub issue for more details and solutions:**  
+🔗 [Issue #36 – npm run test fails, but individual tests pass](https://github.com/EU1182053/Personal-Merchandise-App/issues/36)
 
 
 
